@@ -1,6 +1,21 @@
 #header {
   background-color: transparent;
+  
 }
+
+#avatar_touch {
+  right: -5.4rem;
+  color: white
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
 
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {

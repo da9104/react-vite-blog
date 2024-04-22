@@ -1,36 +1,27 @@
-import { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../context/userContext';
-import axios from 'axios'
+import Loader from '../components/Loader'
+import Posts from '../components/Posts'
 
 function Home() {
     const { currentUser } = useContext(UserContext);
-   
+    const [isLoading, setIsLoading] = useState(false)
+
     useEffect(() => {
-      const fetchUser = async () => {
-      await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/auth`);
-        };
-      fetchUser()
       if(!currentUser) {
+        setIsLoading(true)
         setTimeout(() => {return window.location.pathname = "/"}, 2000)
       }   
     }, [currentUser])
 
-    console.log(currentUser)
+    if(isLoading) {
+        return <Loader />
+    }
 
     return (
-        <div>
-       {currentUser ? (
         <>
-          Protected content for logged-in users
-          <Link to="/logout" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Log out </Link>
+       {currentUser ? <Posts /> : <p> Please log in to access this page. </p>}
         </>
-      ) : (
-        <>
-        <p> Please log in to access this page. </p>
-        </>
-      )}
-        </div>
     )
 }
 

@@ -1,7 +1,7 @@
 function ErrorPage () {
     return (
-        <div>
-            error page
+        <div> 
+          <h2 className="flex place-content-center text-center">  Sorry,  404 Page not found. </h2>
         </div>
     )
 }
