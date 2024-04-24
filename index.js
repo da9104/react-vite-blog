@@ -13,49 +13,47 @@ require('./models/Post')
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware')
 
 dotenv.config()
-// app.use(cors());
 app.use(cors({ methods:["GET","POST","PUT","DELETE","PATCH"], credentials: true, origin: process.env.FRONTEND_URL}))
-mongoose.connect(process.env.DB_CONNECT_STRING).then(app.listen(process.env.PORT || 5001, () => {
-  console.log('server runs on', process.env.PORT || 5001)
-})).catch(error => {console.log(error)})
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(upload())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header(
-//       "Access-Control-Allow-Headers",
-//       "Origin, X-Requested-With, Content-Type, Accept"
-//     );
-//     next();
-//   });
-
-// app.use(session({
-//     secret: process.env.COOKIEKEY,
-//     store: MongoStore.create({mongoUrl: process.env.DB_CONNECT_STRING}),
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {maxAge: 1000 * 60 * 60 * 24, httpOnly: true} // session is valid for One day
-// }))
-
-// app.use(passport.initialize())
-// app.use(passport.session())
-// app.use(passport.authenticate('session'));
 require('./router/auth')(app)
 const postRoutes = require('./router/post')
 app.use('/api/posts', postRoutes)
 app.use(notFound)
 app.use(errorHandler)
 
-// if (process.env.NODE_ENV === 'production') {
-//     // Express serve up production assets
-//     app.use(express.static('client/dist'))
-//     const path = require('path')
-//     app.get('*', (req, res) => {
-//       res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
-//     })
-// }
+const server = require('http').createServer(app)
+const {Server} = require("socket.io");
+// const { createIOServer } = require("./io");
+// createIOServer(server);
 
-module.exports = app
+const io = new Server(server,{
+  cors:{
+      origin: process.env.FRONTEND_URL
+  }
+})
+
+
+io.on("connection",(socket)=>{
+  console.log(`User Connected ${socket.id}`)
+// Lets create a send_message event that listens to the client whenever the 
+// connected user calls the 'send_message' event allong with the data that
+// contains the message data
+  socket.on('send_message',(data)=>{
+      socket.broadcast.emit('recive_message',data)
+  })
+})
+
+server.listen(process.env.PORT || 5001, () => {
+  console.log("the server is running on port 5002")
+  mongoose.connect(process.env.DB_CONNECT_STRING).then(console.log('db connected')).catch(err => console.log(err))
+  // mongoose.connect(process.env.DB_CONNECT_STRING).then(app.listen(process.env.PORT || 5001, () => {
+//   console.log('server runs on', process.env.PORT || 5001)
+// })).catch(error => {console.log(error)})
+})
+
+module.exports = server

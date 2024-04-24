@@ -199,7 +199,10 @@ const editUser = async (req, res, next) => {
   }
   const emailExits = await User.findOne({email})
   if (emailExits && (emailExits._id !== req.user.id)) {
-    return next(new HttpError('Email already existed.', 422))
+    return next(new HttpError('Email already existed. Try a new one', 422))
+    //  const newInfo = await User.findByIdAndUpdate(req.user.id, { email : emailExits, password: hash }, { new: true })
+    //  } else {
+    //    return next(new HttpError('Email already existed.', 422))
   }
   const validateUserPassword = await bcrypt.compare(currentPassword, user.password)
   if (!validateUserPassword) {

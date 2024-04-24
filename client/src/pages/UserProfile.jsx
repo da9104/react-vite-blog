@@ -74,17 +74,16 @@ function UserProfile () {
         if (res.status == 200) {
             window.location.pathname = '/';
         } else {
-            setErrorMessage('error')
+            setErrorMessage('error!')
         }
-    } catch(err) {
-        console.log(err)
-        setErrorMessage(err)
+    } catch(error) {
+        setErrorMessage(`error: ${error.response.data.message}`, error.response.data.message)
      }
    }
 
     return (
         <section className='font-sans flex flex-col min-h-full justify-center items-center'>
-        { errorMessage && <p> {errorMessage} </p>}
+        { errorMessage && <p className='error mx-5 my-5 text-center'> {errorMessage} </p> }
         { currentUser ? <>
             <h2 className='font-bold text-center mb-5'>User Profile</h2>
           
