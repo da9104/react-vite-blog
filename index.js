@@ -28,24 +28,42 @@ app.use(errorHandler)
 
 const server = require('http').createServer(app)
 const {Server} = require("socket.io");
-// const { createIOServer } = require("./io");
-// createIOServer(server);
-
 const io = new Server(server,{
   cors:{
       origin: process.env.FRONTEND_URL
   }
 })
 
+let users = []; 
 
 io.on("connection",(socket)=>{
-  console.log(`User Connected ${socket.id}`)
-// Lets create a send_message event that listens to the client whenever the 
-// connected user calls the 'send_message' event allong with the data that
-// contains the message data
-  socket.on('send_message',(data)=>{
-      socket.broadcast.emit('recive_message',data)
-  })
+  console.log(`User Connected ${socket.id}  ${socket.name}`)
+
+  socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
+
+  socket.on('message', (data) => {
+    // console.log(data.message);
+     io.emit('messageResponse', data);
+  });
+
+  // socket.on('getUserList', () => {
+  //   socket.emit('newUserResponse', users);
+  // });
+
+  socket.on('newUser', (data) => {
+    users.push(data);
+    io.emit('newUserResponse', users);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('🔥: A user disconnected');
+     //Updates the list of users when a user disconnects from the server
+     users = users.filter((user) => user.socketID !== socket.id);
+     //Sends the list of users to the client
+     io.emit('newUserResponse', users);
+     socket.disconnect();
+  });
+
 })
 
 server.listen(process.env.PORT || 5001, () => {

@@ -2,14 +2,16 @@ import { useContext, useState } from "react"
 import { UserContext } from "../context/userContext"
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import { socket } from "../socket"
 
 function Login() {
-    const [userData, setUserData] = useState({
-      email: '',
-      password: ''
+  const [userData, setUserData] = useState({
+    email: '',
+    password: ''
     })
     const [errorMessage, setErrorMessage] = useState('')
-    const { setCurrentUser } = useContext(UserContext)
+    const { currentUser, setCurrentUser } = useContext(UserContext)
+    const [userName, setUserName] = useState('');
 
     const inputHandleChnage = (e) => {
         setUserData(preveState => {
@@ -27,7 +29,8 @@ function Login() {
             setErrorMessage("Invalid email/password");
           } else {
             setCurrentUser(user)
-            localStorage.setItem("user", "true");
+           //  setUserName(user)
+          //  socket.emit('newUser', { userName: firstName, socketID: socket.id });
             window.location.pathname = "/home";
            }
         } catch (error) {

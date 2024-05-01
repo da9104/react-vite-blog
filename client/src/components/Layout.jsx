@@ -1,42 +1,28 @@
-import { useState, useEffect } from 'react'
-import { Outlet } from "react-router-dom";
+import { useState, useEffect, useContext } from 'react'
+import { Outlet } from "react-router-dom"
+import { UserContext } from '../context/userContext';
 import Header from './Header'
 import Modal from './Modal'
-import { io } from "socket.io-client";
-import { socket } from "../socket";
+import { socket } from "../socket"
 
 function Layout () {
     const [isConnected, setIsConnected] = useState(socket.connected);
+    const { currentUser } = useContext(UserContext);
 
     useEffect(() => {
-      // const socket = io({ transports: ["websocket"] });
-      function onConnect() {
-        setIsConnected(true);
-      }
-
-      function onDisconnect() {
-        setIsConnected(false);
-      }
-
         try {
           socket.connect();
-          socket.on('connect', onConnect);
-          socket.emit("message", "hello");
-
+          socket.emit('newUser', { userName: `${currentUser?.firstName}`, socketID: socket.id });
         } catch (err) {
           console.log(err)
         }
-  
-      return () => {
-        socket.disconnect();
-      };
     }, []);
   
     return (
        <>
         <header>
           <Header />
-          <Modal isConnected={ isConnected }/>
+          { currentUser && <Modal socket={socket} isConnected={isConnected} />}
         </header>
       <main>
         <Outlet />

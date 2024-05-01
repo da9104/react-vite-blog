@@ -1,5 +1,3 @@
-
-
 const styles = {
     loader: {
         border: '5px solid #f3f3f3',

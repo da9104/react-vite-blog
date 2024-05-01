@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext"
 import axios from "axios"
+import { socket } from "../socket"
 
 function Register() {
     const [userData, setUserData] = useState({
@@ -30,7 +31,7 @@ function Register() {
             setErrorMessage("Invalid email/password");  
           } else {
             setCurrentUser(newUser)
-            localStorage.setItem("user", "true");
+            //  localStorage.setItem("user", "true");
             window.location.pathname = "/home";
            }
         } catch(error) {

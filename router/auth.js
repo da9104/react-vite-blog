@@ -11,7 +11,6 @@ module.exports = (app) => {
     })
     app.post('/api/auth/register', registerUser)
     app.post('/api/auth/login', loginUser)
-
     app.get('/api/auth/:id', getUser)
     app.post('/api/auth/change-avatar', authMiddleware, changeAvatar)
     app.patch('/api/auth/edit-user', authMiddleware, editUser)

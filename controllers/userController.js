@@ -51,8 +51,8 @@ const registerUser = async (req, res, next) => {
         const salt = await bcrypt.genSalt(10)
         const hashPassword = await bcrypt.hash(password, salt)
         const newUser = await new User({firstName, lastName, email: newEmail, password: hashPassword}).save()
-        const token = jwt.sign({ id: newUser.id }, process.env.JWT_KEY, {expiresIn: '1d'});
-        return res.status(201).json({token, id})
+        const token = jwt.sign({ id: newUser.id, firstName }, process.env.JWT_KEY, {expiresIn: '1d'});
+        return res.status(201).json({token, id: newUser.id, firstName})
        } catch (err) {
         console.log(err)
         return next(new HttpError('Try again, can not create a new account.', 422, err))
@@ -98,7 +98,7 @@ const loginUser = async (req, res, next) => {
       return next(new Error('You need to fill the forms', { cause: res.status }))
     }
     const newEmail = email.toLowerCase()
-    const user = await User.findOne({email : newEmail})
+    const user = await User.findOne({ email : newEmail })
     if(!user) {
         return next(new Error('Invalid credentials.', { cause: res.status }))
     }
@@ -106,9 +106,9 @@ const loginUser = async (req, res, next) => {
     if(!comparePassword) {
         return next(new Error('Invalid credentials.', { cause: res.status }))
     }
-    const { _id: id } = user
+    const { _id: id, firstName } = user
     const token = jwt.sign({id}, process.env.JWT_KEY, {expiresIn: '1d'})
-    return res.status(200).json({token, id})
+    return res.status(200).json({token, id, firstName})
   }
   catch (err) {
     console.log(err)
