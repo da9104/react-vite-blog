@@ -39,6 +39,10 @@ let users = [];
 io.on("connection",(socket)=>{
   console.log(`User Connected ${socket.id}  ${socket.name}`)
 
+  // io.use(fuction(socket, next) {
+
+  // })
+
   socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
 
   socket.on('message', (data) => {
@@ -51,7 +55,8 @@ io.on("connection",(socket)=>{
   // });
 
   socket.on('newUser', (data) => {
-    users.push(data);
+    console.log(data.userName)
+
     io.emit('newUserResponse', users);
   });
 
@@ -65,6 +70,15 @@ io.on("connection",(socket)=>{
   });
 
 })
+
+if (process.env.NODE_ENV === 'production') {
+  // Express serve up production assets
+  app.use(express.static('client/dist'))
+  const path = require('path')
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+  })
+}
 
 server.listen(process.env.PORT || 5001, () => {
   console.log("the server is running on port 5002")
