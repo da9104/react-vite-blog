@@ -3,9 +3,9 @@ const authMiddleware = require('../middlewares/authMiddleware')
 
 module.exports = (app) => {
     app.get('/api/auth', getAuthors, (req, res, next) => {  
-     res.send(req.user)  
-      if (!req.user) {
-        return res.status(401).send({ error: 'You must log in' })
+      res.send(req.user)  
+        if (!req.user) {
+          return res.status(401).send({ error: 'You must log in' })
     }
       next()
     })

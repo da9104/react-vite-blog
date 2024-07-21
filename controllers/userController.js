@@ -142,7 +142,6 @@ const getUser = async (req, res, next) => {
 const getAuthors = async (req, res, next) => {
   try {
     const allUsers = await User.find().select('-password')
-    // console.log(req.user)
     res.json(allUsers)
   } catch(err) {
     return next(new HttpError(err))

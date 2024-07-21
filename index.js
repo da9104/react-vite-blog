@@ -14,7 +14,6 @@ const { notFound, errorHandler } = require('./middlewares/errorMiddleware')
 
 dotenv.config()
 app.use(cors({ methods:["GET","POST","PUT","DELETE","PATCH"], credentials: true, origin: process.env.FRONTEND_URL}))
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(upload())
@@ -23,7 +22,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 require('./router/auth')(app)
 const postRoutes = require('./router/post')
 app.use('/api/posts', postRoutes)
-// app.use(notFound)
+// app.use('/', express.static('dist'))
+app.use(notFound)
 app.use(errorHandler)
 
 const server = require('http').createServer(app)
@@ -38,9 +38,7 @@ let users = [];
 
 io.on("connection",(socket)=>{
   console.log(`User Connected ${socket.id}  ${socket.name}`)
-
   // io.use(fuction(socket, next) {
-
   // })
 
   socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
@@ -56,7 +54,6 @@ io.on("connection",(socket)=>{
 
   socket.on('newUser', (data) => {
     console.log(data.userName)
-
     io.emit('newUserResponse', users);
   });
 
@@ -80,10 +77,10 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-server.listen(process.env.PORT || 5001, () => {
+server.listen(process.env.PORT || 5002, () => {
   console.log("the server is running on port 5002")
   mongoose.connect(process.env.DB_CONNECT_STRING).then(console.log('db connected')).catch(err => console.log(err))
-  // mongoose.connect(process.env.DB_CONNECT_STRING).then(app.listen(process.env.PORT || 5001, () => {
+// mongoose.connect(process.env.DB_CONNECT_STRING).then(app.listen(process.env.PORT || 5001, () => {
 //   console.log('server runs on', process.env.PORT || 5001)
 // })).catch(error => {console.log(error)})
 })
