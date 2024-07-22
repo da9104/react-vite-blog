@@ -23,7 +23,7 @@ require('./router/auth')(app)
 const postRoutes = require('./router/post')
 const authRoutes = require('./router/auth')
 app.use('/api/posts', postRoutes)
-app.use('/', authRoutes)
+
 app.use(notFound)
 app.use(errorHandler)
 
