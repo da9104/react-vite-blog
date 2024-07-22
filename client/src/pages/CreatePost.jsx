@@ -51,7 +51,7 @@ const CreatePost = () => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/posts`, postData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
             if (response.status == 201) {
-              return window.location.pathname = "/home";
+              return navigate("/home");
             } else {
                 setErrorMessage('Error: unable to create a post')
             }

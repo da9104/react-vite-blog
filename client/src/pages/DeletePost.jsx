@@ -22,10 +22,10 @@ const DeletePost = ({ postId }) => {
         try {
           const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/posts/${postId}`, { withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
             if (response.status === 200) {
-              window.location.pathname = "/home";
+              navigate("/home");
             } else {
               console.log('server:', response.data)
-              window.location.pathname = "/home";
+              navigate("/home");
             }
          } catch (err) {
           if (err.response && err.response.status === 403) {

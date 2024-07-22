@@ -76,7 +76,7 @@ const EditPost = () => {
       try {
           const response = await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/api/posts/${id}`, postData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
           if (response.status == 200) {
-            return window.location.pathname = "/home";
+            return navigate("/home");
           } else {
               setErrorMessage('Error: unable to update a post')
           }
