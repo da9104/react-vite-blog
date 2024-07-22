@@ -21,7 +21,7 @@ function Dashboard () {
         const fetchPosts = async () => {
             setIsLoading(true)   
             try {
-                const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/posts/users/${id}`, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
+                const res = await axios.get(`${import.meta.env.VITE_API_ASSETS_URL}/api/posts/users/${id}`, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
                 setPosts(res?.data) // /users/:id
             } catch (err) {
                 console.log(err)

@@ -26,7 +26,7 @@ const EditPost = () => {
         const getPost = async () => {
           setIsLoading(true)
           try {
-              const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/posts/${id}`)
+              const res = await axios.get(`${import.meta.env.VITE_API_ASSETS_URL}/api/posts/${id}`)
              if (res.data) {
                  setPost(res?.data)
                  setTitle(res?.data.title)

@@ -15,7 +15,7 @@ const CategoryPost = () => {
             setIsLoading(true)   
             try {
                 // router.get('/categories/:category', getCategories)
-                const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/posts/categories/${category}`)
+                const res = await axios.get(`${import.meta.env.VITE_API_ASSETS_URL}/api/posts/categories/${category}`)
                 setPosts(res?.data)
             } catch (err) {
                 console.log(err)

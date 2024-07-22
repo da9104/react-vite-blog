@@ -18,7 +18,7 @@ const DeletePost = ({ postId }) => {
       const deletePost = async (postId) => {
         setIsLoading(true)
         try {
-          const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/posts/${postId}`, { withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
+          const response = await axios.delete(`${import.meta.env.VITE_API_ASSETS_URL}/api/posts/${postId}`, { withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
             if (response.status === 200) {
               window.location.pathname = "/home";
             } else {

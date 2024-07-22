@@ -12,7 +12,7 @@ const Authors = () => {
       const getAuthors = async () => {
         setIsLoading(true)
         try {
-            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/auth`)
+            const res = await axios.get(`${import.meta.env.VITE_API_ASSETS_URL}/api/auth`)
             if (res) {
                 setAuthors(res?.data)
             } else {

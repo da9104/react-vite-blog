@@ -48,7 +48,7 @@ const CreatePost = () => {
         postData.set('thumbnail', thumbnail)
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/posts`, postData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
+            const response = await axios.post(`${import.meta.env.VITE_API_ASSETS_URL}/api/posts`, postData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
             if (response.status == 201) {
               return window.location.pathname = "/home";
             } else {

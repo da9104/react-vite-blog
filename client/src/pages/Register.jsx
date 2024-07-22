@@ -23,7 +23,7 @@ function Register() {
     const registerUser = async (e) => {
        e.preventDefault()
        try {
-        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/register`, userData)
+        const response = await axios.post(`${import.meta.env.VITE_API_ASSETS_URL}/api/auth/register`, userData)
         const newUser = await response.data
         if (userData.email === "" || userData.password === "") {
             setErrorMessage("Empty email/password field");

@@ -21,7 +21,7 @@ function Login() {
     const handleLoginSubmit = async (e) => {
         e.preventDefault()
         try {
-          const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login`, userData)
+          const response = await axios.post(`${import.meta.env.VITE_API_ASSETS_URL}/api/auth/login`, userData)
           const user = await response.data
           if (userData.email === "" || userData.password === "") {
             setErrorMessage("Empty email/password field");
