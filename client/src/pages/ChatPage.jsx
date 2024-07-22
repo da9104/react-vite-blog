@@ -23,8 +23,8 @@ const ChatPage = ({ socket }) => {
     
 
   return (
-      <div className='chat'>
-      <ChatBar socket={socket} />
+      <div className='bg-white shadow-md rounded-lg max-w-lg w-full'>
+      {/* <ChatBar socket={socket} /> */}
       <div className="chat__main">
         <ChatBody 
         messages={messages} 
