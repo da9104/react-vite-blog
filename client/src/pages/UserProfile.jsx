@@ -70,7 +70,7 @@ function UserProfile () {
         userUpdatedData.set('newPassword', newPassword)
         userUpdatedData.set('confirmNewPassword', confirmNewPassword)
 
-        const res = await axios.patch(`${import.meta.env.VITE_API_ASSETS_URL}/api/auth/edit-user`, userUpdatedData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
+        const res = await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/edit-user`, userUpdatedData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
         if (res.status == 200) {
             window.location.pathname = '/';
         } else {
