@@ -4,8 +4,8 @@ const { createPost, getPosts, getSinglePost, getCategories, getUserPosts, editPo
 
 const router = Router()
 
-router.post('/', authMiddleware, createPost)
 router.get('/', getPosts)
+router.post('/', authMiddleware, createPost)
 router.get('/:id', getSinglePost)
 router.get('/categories/:category', getCategories)
 router.get('/getCategoryList', getCategoryList)

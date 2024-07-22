@@ -21,14 +21,15 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 
 require('./router/auth')(app)
 const postRoutes = require('./router/post')
+const authRoutes = require('./router/auth')
 app.use('/api/posts', postRoutes)
-// app.use('/', express.static('dist'))
+app.use('/', authRoutes)
 app.use(notFound)
 app.use(errorHandler)
 
 const server = require('http').createServer(app)
 const {Server} = require("socket.io");
-const io = new Server(server,{
+const io = new Server(server, {
   cors:{
       origin: process.env.FRONTEND_URL
   }
@@ -76,9 +77,6 @@ if (process.env.NODE_ENV === 'production') {
 server.listen(process.env.PORT || 5002, () => {
   console.log("the server is running on port 5002")
   mongoose.connect(process.env.DB_CONNECT_STRING).then(console.log('db connected')).catch(err => console.log(err))
-// mongoose.connect(process.env.DB_CONNECT_STRING).then(app.listen(process.env.PORT || 5001, () => {
-//   console.log('server runs on', process.env.PORT || 5001)
-// })).catch(error => {console.log(error)})
 })
 
 module.exports = server
