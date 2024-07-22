@@ -21,9 +21,9 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 
 require('./router/auth')(app)
 const postRoutes = require('./router/post')
-const authRoutes = require('./router/auth')
-app.use('/api/posts', postRoutes)
 
+app.use('/api/posts', postRoutes)
+app.use('/', express.static('client/dist'))
 app.use(notFound)
 app.use(errorHandler)
 

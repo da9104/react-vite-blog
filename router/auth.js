@@ -1,5 +1,8 @@
+const { Router } = require('express')
 const { registerUser, loginUser, getUser, getAuthors, changeAvatar, editUser } = require('../controllers/userController')
 const authMiddleware = require('../middlewares/authMiddleware')
+
+const router = Router()
 
 module.exports = (app) => {
     app.get('/api/auth', getAuthors, (req, res, next) => {  
