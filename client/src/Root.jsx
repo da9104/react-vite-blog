@@ -19,12 +19,12 @@ export default function Root() {
     return (
       <Routes>
         <Route element={<Layout />}>
-            <Route path="/" element={<App />} />
+            <Route exact path="/" element={<App />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route exact path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/profile/:id" element={<UserProfile /> } />
-            <Route path="/register" element={<Register />} />
+            <Route exact path="/register" element={<Register />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/authors" element={<Authors />} />
             <Route path="/myposts/:id" element={<Dashboard />} />
