@@ -1,17 +1,18 @@
 import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../context/userContext';
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loader from '../components/Loader'
 import Posts from '../components/Posts'
 
 function Home() {
     const { currentUser } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate();
 
     useEffect(() => {
       if(!currentUser) {
         setIsLoading(true)
-        setTimeout(() => {return redirect("/")}, 2000)
+        setTimeout(() => {return navigate("/")}, 2000)
       }   
     }, [currentUser])
 

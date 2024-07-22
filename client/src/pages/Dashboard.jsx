@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import { UserContext } from "../context/userContext"
-import { Link, useParams, redirect } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader'
 import PostItem from '../components/PostItem'
 import axios from 'axios'
@@ -11,11 +11,12 @@ function Dashboard () {
     const [posts, setPosts] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const token = currentUser?.token
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(!currentUser) {
             setIsLoading(true)
-            setTimeout(() => {return redirect("/")}, 2000)
+            setTimeout(() => {return navigate("/")}, 2000)
           }  
 
         const fetchPosts = async () => {

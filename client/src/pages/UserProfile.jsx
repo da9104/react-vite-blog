@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import Loader from '../components/Loader'
 import { useParams, Link } from 'react-router-dom'
 import { UserContext } from '../context/userContext'
-import { redirect, redirectDocument } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 function UserProfile () {
@@ -18,11 +18,12 @@ function UserProfile () {
    const [userData, setUserData] = useState({})
    const [isAvatarTouched, setIsAvatarTouched] = useState(false)
    const token = currentUser?.token
+   const navigate = useNavigate();
 
    useEffect(() => {
     if(!currentUser) {
         setIsLoading(true)
-        setTimeout(() => {return window.location.pathname = "/"}, 2000)
+        setTimeout(() => {return navigate("/")}, 2000)
       }   
         const getUser = async () => {
         setIsLoading(true)
@@ -73,8 +74,7 @@ function UserProfile () {
 
         const res = await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/edit-user`, userUpdatedData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
         if (res.status == 200) {
-            // window.location.pathname = '/';
-            redirectDocument("/")
+            navigate("/")
         } else {
             setErrorMessage('error!')
         }

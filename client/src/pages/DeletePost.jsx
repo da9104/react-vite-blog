@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../context/userContext';
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom'
 import Loader from '../components/Loader'
 import axios from 'axios'
@@ -9,10 +9,11 @@ const DeletePost = ({ postId }) => {
     const [isLoading, setIsLoading] = useState(false)  
     const { currentUser } = useContext(UserContext);
     const token = currentUser?.token
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(!currentUser) {
-          setTimeout(() => {return redirect("/")}, 2000)
+          setTimeout(() => {return navigate("/")}, 2000)
         }   
       }, [currentUser])
   

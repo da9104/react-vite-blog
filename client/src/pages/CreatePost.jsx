@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../context/userContext';
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
-
+const navigate = useNavigate();
 
 const CreatePost = () => {
     const [title, setTitle] = useState('')
@@ -17,7 +17,7 @@ const CreatePost = () => {
 
     useEffect(() => {
         if(!currentUser) {
-          setTimeout(() => {return redirect("/")}, 2000)
+          setTimeout(() => {return navigate("/")}, 2000)
         }  
       }, [currentUser])
 

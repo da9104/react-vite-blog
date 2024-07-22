@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../context/userContext"
-import { redirect, redirectDocument } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import Loader from '../components/Loader'
 
 const Logout = () => {
     const { currentUser, setCurrentUser } = useContext(UserContext)
     const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIsLoading(true) 
@@ -13,7 +14,7 @@ const Logout = () => {
            localStorage.removeItem("user");
            setCurrentUser(null)
            setIsLoading(false)
-           redirect("/login")
+           navigate("/login")
          }
          return () => {
             setCurrentUser(null)

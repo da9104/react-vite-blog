@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext"
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import { socket } from "../socket"
 
@@ -14,6 +14,7 @@ function Register() {
     })
     const [errorMessage, setErrorMessage] = useState("")
     const { setCurrentUser } = useContext(UserContext)
+    const navigate = useNavigate();
 
     const inputHandleChnage = (e) => {
       setUserData(preveState => {
@@ -33,7 +34,7 @@ function Register() {
           } else {
             setCurrentUser(newUser)
             //  localStorage.setItem("user", "true");
-            redirect("/home")
+            navigate("/home")
             // window.location.pathname = "/home";
            }
         } catch(error) {

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { redirect, redirectDocument } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/userContext"
 import { Link } from 'react-router-dom';
 import axios from 'axios'
@@ -13,6 +13,7 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('')
     const { setCurrentUser } = useContext(UserContext)
     const [userName, setUserName] = useState('');
+    const navigate = useNavigate();
 
     const inputHandleChnage = (e) => {
         setUserData(preveState => {
@@ -32,7 +33,7 @@ function Login() {
             setCurrentUser(user)
            //   setUserName(user)
            //   socket.emit('newUser', { userName: firstName, socketID: socket.id });
-           redirect("/home");
+           navigate("/home");
            }
         } catch (error) {
             console.log(error)
