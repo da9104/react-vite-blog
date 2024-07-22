@@ -18,14 +18,13 @@ import PostDetail from './pages/PostDetail'
 export default function Root() {
     return (
       <Routes>
-        <Route element={<Layout />}>
-            <Route exact path="/" element={<App />} />
-            <Route exact path="*" element={<Home />} />
-            {/* <Route exact path="/home" element={<Home />} /> */}
-            <Route exact path="/login" element={<Login />} />
+        <Route path="/" element={<Layout />}>
+            <Route index element={<App />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/profile/:id" element={<UserProfile /> } />
-            <Route exact path="/register" element={<Register />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/authors" element={<Authors />} />
             <Route path="/myposts/:id" element={<Dashboard />} />
@@ -34,6 +33,7 @@ export default function Root() {
             <Route path="/posts/users/:id" element={<AuthorPosts />} />
             <Route path="/posts/:id/edit-post" element={<EditPost />} />
             <Route path="/posts/:id/delete-post" element={<DeletePost />} />
+            <Route path="*" element={<Home />} />
         </Route>
       </Routes>
     );
