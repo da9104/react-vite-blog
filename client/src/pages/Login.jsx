@@ -10,7 +10,7 @@ function Login() {
     password: ''
     })
     const [errorMessage, setErrorMessage] = useState('')
-    const { currentUser, setCurrentUser } = useContext(UserContext)
+    const { setCurrentUser } = useContext(UserContext)
     const [userName, setUserName] = useState('');
 
     const inputHandleChnage = (e) => {
@@ -29,7 +29,7 @@ function Login() {
             setErrorMessage("Invalid email/password");
           } else {
             setCurrentUser(user)
-           //  setUserName(user)
+           //   setUserName(user)
            //   socket.emit('newUser', { userName: firstName, socketID: socket.id });
             window.location.pathname = "/home";
            }

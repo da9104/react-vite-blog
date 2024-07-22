@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import App from './App.jsx'
+import LandingPage from './LandingPage.jsx'
 import Layout from './components/Layout.jsx'
 import Login from './pages/Login.jsx'
 import AuthorPosts from './pages/AuthorPosts.jsx'
@@ -18,9 +18,9 @@ import PostDetail from './pages/PostDetail'
 
 export default function Root() {
     return (
-      <Routes>
+       <Routes>
         <Route element={<Layout />}>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
@@ -34,7 +34,6 @@ export default function Root() {
             <Route path="/posts/users/:id" element={<AuthorPosts />} />
             <Route path="/posts/:id/edit-post" element={<EditPost />} />
             <Route path="/posts/:id/delete-post" element={<DeletePost />} />
-            <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     );

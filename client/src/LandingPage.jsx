@@ -2,8 +2,7 @@ import './App.css'
 import Login from './pages/Login'
 import MainImg from './assets/ryan-cuerden-lbsa7Nn5EPI-unsplash.jpg'
 
-
-function App() { // main landing page
+function LandingPage() { // main landing page
   return (
     <>
     <div className='grid grid-cols-2 place-content-center'>
@@ -18,4 +17,4 @@ function App() { // main landing page
   )
 }
 
-export default App
+export default LandingPage

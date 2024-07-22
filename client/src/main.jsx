@@ -2,7 +2,7 @@ import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
-import App from './App'
+import LandingPage from './LandingPage.jsx'
 import Root from './Root.jsx'
 import Login from './pages/Login.jsx'
 import AuthorPosts from './pages/AuthorPosts.jsx'
@@ -21,16 +21,16 @@ import CategoryPost from './pages/CategoryPost.jsx'
 import Authors from './pages/Authors.jsx'
 
 const router = createBrowserRouter([
-  { path: '/', element: <App /> },
   { 
     path: "/", 
     element: <UserProvider><Root /></UserProvider>,
     errorElement: <ErrorPage />,
     children: [
+      { path: '/', element: <LandingPage /> },
       { index: true, path: "/home", element: <Home /> },
+      { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/logout", element: <Logout /> },
-      { path: "/login", element: <Login /> },
       { path: "/profile/:id", element: <UserProfile /> },
       { path: "/create-post", element: <CreatePost /> },
       { path: "/myposts/:id", element: <Dashboard /> },
@@ -40,8 +40,8 @@ const router = createBrowserRouter([
       { path: "/posts/users/:id", element: <AuthorPosts />  },
       { path: "/posts/:id/edit-post", element: <EditPost /> },
       { path: "/posts/:id/delete-post", element: <DeletePost /> },
-      { path: '*', element: <ErrorPage /> },
     ]},
+    { path: "*", element: <Root /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
