@@ -30,7 +30,7 @@ function Login() {
           } else {
             setCurrentUser(user)
            //  setUserName(user)
-          //  socket.emit('newUser', { userName: firstName, socketID: socket.id });
+           //   socket.emit('newUser', { userName: firstName, socketID: socket.id });
             window.location.pathname = "/home";
            }
         } catch (error) {

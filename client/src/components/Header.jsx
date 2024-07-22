@@ -142,7 +142,7 @@ function Header () {
     </div>
 
     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-    {currentUser? <a href="/logout" className="text-sm font-semibold leading-6 text-gray-900">Log out <span aria-hidden="true">&rarr;</span></a> : <a href="/register" className="text-sm font-medium text-gray-700 hover:text-gray-800">Sign up</a>}  
+    {currentUser? <Link href="/logout" className="text-sm font-semibold leading-6 text-gray-900">Log out <span aria-hidden="true">&rarr;</span></Link> : <Link href="/register" className="text-sm font-medium text-gray-700 hover:text-gray-800">Sign up</Link>}  
     </div>
   </nav>
 
@@ -193,7 +193,7 @@ function Header () {
       
        </div>
        <div className="py-6">
-          {currentUser? <a href="/logout" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log out</a> : <a href="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Sign in</a> }
+          {currentUser? <Link href="/logout" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log out</Link> : <Link href="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Sign in</Link> }
        </div>
      </div>
    </div>

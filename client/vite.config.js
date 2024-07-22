@@ -9,12 +9,12 @@ export default defineConfig({
     proxy: {
       '/api':{
         target: 'http://localhost:5002',
-        changeOrigin: false,
+        changeOrigin: true,
         secure: false,
       },
       '/api/**':{
         target: 'http://localhost:5002',
-        changeOrigin: false,
+        changeOrigin: true,
         secure: false,      
         ws: true,
       },
@@ -23,7 +23,7 @@ export default defineConfig({
       },
       '/auth/**':{
         target: 'http://localhost:5002',
-        changeOrigin: false,
+        changeOrigin: true,
         secure: false,      
         ws: true,
       },
