@@ -13,7 +13,7 @@ const DeletePost = ({ postId }) => {
 
     useEffect(() => {
         if(!currentUser) {
-          setTimeout(() => {return navigate("/")}, 2000)
+          setTimeout(() => {navigate("/")}, 2000)
         }   
       }, [currentUser])
   

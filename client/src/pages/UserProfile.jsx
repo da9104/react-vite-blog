@@ -23,7 +23,7 @@ function UserProfile () {
    useEffect(() => {
     if(!currentUser) {
         setIsLoading(true)
-        setTimeout(() => {return navigate("/")}, 2000)
+        setTimeout(() => {navigate("/")}, 2000)
       }   
         const getUser = async () => {
         setIsLoading(true)

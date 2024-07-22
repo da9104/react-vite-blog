@@ -12,7 +12,7 @@ function Home() {
     useEffect(() => {
       if(!currentUser) {
         setIsLoading(true)
-        setTimeout(() => {return navigate("/")}, 2000)
+        setTimeout(() => {navigate("/")}, 2000)
       }   
     }, [currentUser])
 

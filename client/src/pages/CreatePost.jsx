@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
-const navigate = useNavigate();
 
 const CreatePost = () => {
     const [title, setTitle] = useState('')
@@ -14,10 +13,11 @@ const CreatePost = () => {
     const {currentUser} = useContext(UserContext)
     const [errorMessage, setErrorMessage] = useState('')
     const token = currentUser?.token
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(!currentUser) {
-          setTimeout(() => {return navigate("/")}, 2000)
+          setTimeout(() => {navigate("/")}, 2000)
         }  
       }, [currentUser])
 

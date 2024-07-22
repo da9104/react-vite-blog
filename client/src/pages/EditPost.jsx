@@ -22,7 +22,7 @@ const EditPost = () => {
 
     useEffect(() => {
         if(!currentUser) {
-          setTimeout(() => {return navigate("/")}, 2000)
+          setTimeout(() => {navigate("/")}, 2000)
         } 
 
         const getPost = async () => {

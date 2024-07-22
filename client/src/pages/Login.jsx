@@ -33,7 +33,7 @@ function Login() {
             setCurrentUser(user)
            //   setUserName(user)
            //   socket.emit('newUser', { userName: firstName, socketID: socket.id });
-           navigate("/home");
+            navigate("/home");
            }
         } catch (error) {
             console.log(error)
