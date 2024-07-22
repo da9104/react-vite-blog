@@ -32,7 +32,7 @@ function Login() {
             setCurrentUser(user)
            //   setUserName(user)
            //   socket.emit('newUser', { userName: firstName, socketID: socket.id });
-            redirectDocument("/home");
+           redirect("/home");
            }
         } catch (error) {
             console.log(error)

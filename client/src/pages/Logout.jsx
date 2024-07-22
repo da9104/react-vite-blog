@@ -13,7 +13,7 @@ const Logout = () => {
            localStorage.removeItem("user");
            setCurrentUser(null)
            setIsLoading(false)
-           redirectDocument("/login")
+           redirect("/login")
          }
          return () => {
             setCurrentUser(null)
