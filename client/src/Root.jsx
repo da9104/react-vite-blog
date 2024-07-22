@@ -20,7 +20,7 @@ export default function Root() {
       <Routes>
         <Route element={<Layout />}>
             <Route exact path="/" element={<App />} />
-            <Route path="/home" element={<Home />} />
+            <Route exact path="/home" element={<Home />} />
             <Route exact path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/profile/:id" element={<UserProfile /> } />
