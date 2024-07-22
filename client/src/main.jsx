@@ -23,11 +23,11 @@ import Authors from './pages/Authors.jsx'
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
   { 
-    path: "*", 
+    path: "/", 
     element: <UserProvider><Root /></UserProvider>,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/home", element: <Home /> },
+      { index: true, path: "/home", element: <Home /> },
       { path: "/register", element: <Register /> },
       { path: "/logout", element: <Logout /> },
       { path: "/login", element: <Login /> },
@@ -40,7 +40,6 @@ const router = createBrowserRouter([
       { path: "/posts/users/:id", element: <AuthorPosts />  },
       { path: "/posts/:id/edit-post", element: <EditPost /> },
       { path: "/posts/:id/delete-post", element: <DeletePost /> },
-      { path: "*", element: <Home /> },
     ]},
 ]);
 

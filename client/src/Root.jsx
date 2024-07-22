@@ -18,9 +18,9 @@ import PostDetail from './pages/PostDetail'
 export default function Root() {
     return (
       <Routes>
-        <Route path="/" element={<Layout />}>
-            <Route index element={<App />} />
-            <Route path="/home" element={<Home />} />
+        <Route element={<Layout />}>
+            <Route path="/" element={<App />} />
+            <Route index path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/profile/:id" element={<UserProfile /> } />
