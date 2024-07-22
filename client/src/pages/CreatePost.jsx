@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../context/userContext';
+import { redirectDocument } from "react-router-dom";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
@@ -16,7 +17,7 @@ const CreatePost = () => {
 
     useEffect(() => {
         if(!currentUser) {
-          setTimeout(() => {return window.location.pathname = "/"}, 2000)
+          setTimeout(() => {return redirectDocument("/")}, 2000)
         }  
       }, [currentUser])
 

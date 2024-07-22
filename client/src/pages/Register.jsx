@@ -1,6 +1,7 @@
 import { useState, useContext } from "react"
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext"
+import { redirect, redirectDocument } from "react-router-dom";
 import axios from "axios"
 import { socket } from "../socket"
 
@@ -32,7 +33,8 @@ function Register() {
           } else {
             setCurrentUser(newUser)
             //  localStorage.setItem("user", "true");
-            window.location.pathname = "/home";
+            redirectDocument("/home")
+            // window.location.pathname = "/home";
            }
         } catch(error) {
             console.log(error)

@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../context/userContext';
+import { redirectDocument } from "react-router-dom";
 import { Link } from 'react-router-dom'
 import Loader from '../components/Loader'
 import axios from 'axios'
@@ -11,7 +12,7 @@ const DeletePost = ({ postId }) => {
 
     useEffect(() => {
         if(!currentUser) {
-          setTimeout(() => {return window.location.pathname = "/"}, 2000)
+          setTimeout(() => {return redirectDocument("/")}, 2000)
         }   
       }, [currentUser])
   

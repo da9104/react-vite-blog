@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import Loader from '../components/Loader'
 import { useParams, Link } from 'react-router-dom'
 import { UserContext } from '../context/userContext'
+import { redirect, redirectDocument } from "react-router-dom";
 import axios from 'axios'
 
 function UserProfile () {
@@ -72,7 +73,8 @@ function UserProfile () {
 
         const res = await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/edit-user`, userUpdatedData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
         if (res.status == 200) {
-            window.location.pathname = '/';
+            // window.location.pathname = '/';
+            redirectDocument("/")
         } else {
             setErrorMessage('error!')
         }

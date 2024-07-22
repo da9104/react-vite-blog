@@ -1,4 +1,5 @@
 import { useContext, useState } from "react"
+import { redirect, redirectDocument } from "react-router-dom";
 import { UserContext } from "../context/userContext"
 import { Link } from 'react-router-dom';
 import axios from 'axios'
@@ -31,7 +32,7 @@ function Login() {
             setCurrentUser(user)
            //   setUserName(user)
            //   socket.emit('newUser', { userName: firstName, socketID: socket.id });
-            window.location.pathname = "/home";
+            redirectDocument("/home");
            }
         } catch (error) {
             console.log(error)

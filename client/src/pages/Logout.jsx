@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../context/userContext"
+import { redirect, redirectDocument } from "react-router-dom";
 import Loader from '../components/Loader'
 
 const Logout = () => {
@@ -12,7 +13,7 @@ const Logout = () => {
            localStorage.removeItem("user");
            setCurrentUser(null)
            setIsLoading(false)
-           window.location.pathname = "/login";
+           redirectDocument("/login")
          }
          return () => {
             setCurrentUser(null)

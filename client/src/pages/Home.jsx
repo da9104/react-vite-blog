@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../context/userContext';
+import { redirectDocument } from "react-router-dom";
 import Loader from '../components/Loader'
 import Posts from '../components/Posts'
 
@@ -10,7 +11,7 @@ function Home() {
     useEffect(() => {
       if(!currentUser) {
         setIsLoading(true)
-        setTimeout(() => {return window.location.pathname = "/"}, 2000)
+        setTimeout(() => {return redirectDocument("/")}, 2000)
       }   
     }, [currentUser])
 
