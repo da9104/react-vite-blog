@@ -21,7 +21,7 @@ import CategoryPost from './pages/CategoryPost.jsx'
 import Authors from './pages/Authors.jsx'
 
 const router = createBrowserRouter([
-  { path: '*', element: <App /> },
+  { path: '*', element: <Home /> },
   { 
     path: "/", 
     element: <UserProvider><Root /></UserProvider>,

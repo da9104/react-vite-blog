@@ -19,9 +19,9 @@ export default function Root() {
     return (
       <Routes>
         <Route element={<Layout />}>
-            <Route path="*" />
             <Route exact path="/" element={<App />} />
-            <Route exact path="/home" element={<Home />} />
+            <Route exact path="*" element={<Home />} />
+            {/* <Route exact path="/home" element={<Home />} /> */}
             <Route exact path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/profile/:id" element={<UserProfile /> } />
