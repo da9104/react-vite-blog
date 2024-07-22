@@ -6,6 +6,7 @@ import AuthorPosts from './pages/AuthorPosts.jsx'
 import CategoryPost from './pages/CategoryPost'
 import Authors from './pages/Authors'
 import Home from './pages/Home'
+import ErrorPage from './pages/ErrorPage.jsx'
 import UserProfile from './pages/UserProfile'
 import Register from './pages/Register.jsx';
 import CreatePost from './pages/CreatePost.jsx'
@@ -20,7 +21,7 @@ export default function Root() {
       <Routes>
         <Route element={<Layout />}>
             <Route path="/" element={<App />} />
-            <Route index path="/home" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/profile/:id" element={<UserProfile /> } />
@@ -33,7 +34,7 @@ export default function Root() {
             <Route path="/posts/users/:id" element={<AuthorPosts />} />
             <Route path="/posts/:id/edit-post" element={<EditPost />} />
             <Route path="/posts/:id/delete-post" element={<DeletePost />} />
-            <Route path="*" element={<Home />} />
+            <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     );

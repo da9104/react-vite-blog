@@ -40,6 +40,7 @@ const router = createBrowserRouter([
       { path: "/posts/users/:id", element: <AuthorPosts />  },
       { path: "/posts/:id/edit-post", element: <EditPost /> },
       { path: "/posts/:id/delete-post", element: <DeletePost /> },
+      { path: '*', element: <ErrorPage /> },
     ]},
 ]);
 
