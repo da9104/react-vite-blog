@@ -22,7 +22,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 require('./router/auth')(app)
 const postRoutes = require('./router/post')
 app.use('/api/posts', postRoutes)
-app.use('/', express.static('dist'))
+// app.use('/', express.static('dist'))
 app.use(notFound)
 app.use(errorHandler)
 
